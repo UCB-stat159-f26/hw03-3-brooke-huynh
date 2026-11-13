@@ -42,6 +42,11 @@ def _getJS(url):
 
 
 def _cleanData(match_data, player_dob):
+	df = pd.DataFrame(_parseMatches(match_data))
+	return _calculateAges(df, player_dob)
+
+
+def _parseMatches(match_data):
 	cleaned_rows = []
 	for m in match_data:
 		row = {
@@ -54,8 +59,10 @@ def _cleanData(match_data, player_dob):
 		}
 		cleaned_rows.append(row)
 
-	df = pd.DataFrame(cleaned_rows)
-	
+	return cleaned_rows
+
+
+def _calculateAges(df, player_dob):
 	df["date"] = pd.to_datetime(df["date"])
 	df["player_age"] = (df["date"] - pd.to_datetime(player_dob)).dt.days / 365
 
