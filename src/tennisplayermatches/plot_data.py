@@ -1,7 +1,6 @@
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-import numpy as np
 
 def createPlot(df, output_path=None):
 	sns.scatterplot(
