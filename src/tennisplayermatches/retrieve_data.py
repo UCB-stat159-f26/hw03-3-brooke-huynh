@@ -24,7 +24,9 @@ def getPlayerData(name):
 	return _cleanData(raw_data, player_dob = player_dob)
 
 def _formatPlayerName(name):
-	return name.title().replace(" ", "")
+	if " " in name:
+		return name.title().replace(" ", "")
+	return name
 
 
 def _getJS(url):
